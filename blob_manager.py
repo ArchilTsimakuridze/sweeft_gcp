@@ -3,7 +3,7 @@ from helpers.path_formatter import absolute_path
 
 
 BUCKET_NAME = 'maridashvili-bucket'
-BLOB_NAME = 'nino.csv'
+BLOB_NAME = 'archil.csv'
 BLOB_PATH = ''
 PROJECT_NAME = 'crud-project'
 CREDENTIALS_JSON = absolute_path('temporary_config/credentials.json')
@@ -26,7 +26,8 @@ class BlobManager:
                                   credentials_json=self.credentials)
         self.bucket = self.object.bucket
         self.blob = self.object.get_blob
-        self.blobs = self.bucket.list_blobs(prefix=self.blob_path)
+        self.blobs = self.bucket.list_blobs(prefix=self.blob_path,
+                                            versions=True)
 
     def upload(self, file_path):
         self.blob.upload_from_filename(absolute_path(file_path))
@@ -50,17 +51,16 @@ class BlobManager:
         self.upload(file_path)
         return f'Updated {self.blob_name}'
 
-    # def get_metadata(self):
-    #     for b in blobs:
-    #         metadata = {"Blob_Name": b.name,
-    #                     "Size": b.size,
-    #                     "Updated": b.updated,
-    #                     "hash": b.md5_hash}
-    #         print(metadata)
+    def some_func(self):
+        hash_list = []
+        for blob in self.blobs:
+            hash_list.append(blob.md5_hash)
 
 
-a = BlobManager(credentials_path=CREDENTIALS_JSON, blob_path=BLOB_PATH,
+b = BlobManager(credentials_path=CREDENTIALS_JSON, blob_path=BLOB_PATH,
                 blob_name=BLOB_NAME, bucket_name=BUCKET_NAME,
                 project_name=PROJECT_NAME)
 
-a.upload('temporary_data/nino.csv')
+b.upload('temporary_data/archil.csv')
+
+b.some_func()
