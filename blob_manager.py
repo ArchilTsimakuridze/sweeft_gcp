@@ -3,7 +3,7 @@ from helpers.path_formatter import absolute_path
 
 
 BUCKET_NAME = 'maridashvili-bucket'
-BLOB_NAME = 'rame.csv'
+BLOB_NAME = 'archil.csv'
 BLOB_PATH = ''
 PROJECT_NAME = 'crud-project'
 CREDENTIALS_JSON = absolute_path('temporary_config/credentials.json')
@@ -61,6 +61,6 @@ b = BlobManager(credentials_path=CREDENTIALS_JSON, blob_path=BLOB_PATH,
                 blob_name=BLOB_NAME, bucket_name=BUCKET_NAME,
                 project_name=PROJECT_NAME)
 
-b.upload('temporary_data/rame.csv')
+b.upload('temporary_data/archil.csv')
 
 b.some_func()
