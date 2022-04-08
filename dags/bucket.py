@@ -47,7 +47,7 @@ with models.DAG(
         'transfer_updated',
         catchup=False,
         default_args=default_args,
-        schedule_interval=datetime.timedelta(days=1)) as dag:
+        schedule_interval=None) as dag:
 
     hello_python = BranchPythonOperator(
         task_id='check_if_updated',

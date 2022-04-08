@@ -4,7 +4,7 @@ from helpers.path_formatter import absolute_path
 
 BUCKET_NAME = 'maridashvili-bucket'
 BLOB_NAME = 'archil.csv'
-BLOB_PATH = ''
+BLOB_PATH = 'some_folder'
 PROJECT_NAME = 'crud-project'
 CREDENTIALS_JSON = absolute_path('temporary_config/credentials.json')
 
