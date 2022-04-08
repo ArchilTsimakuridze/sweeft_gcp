@@ -27,11 +27,17 @@ def format_columns(columns_list):
     formatted_columns = []
 
     for column in columns_list:
-        column = column.lower()
-        column = column.replace(' ', '')
+        character_list = list([val for val in column if val.isalnum()])
+        column = "".join(character_list)
         formatted_columns.append(column)
 
     return formatted_columns
+
+
+def format_table_name(table_name):
+    table_character = list([val for val in table_name if val.isalnum()])
+    table_name = "".join(table_character)
+    return table_name
 
 
 def upload_to_postgres(event, context):
@@ -51,7 +57,7 @@ def upload_to_postgres(event, context):
 
     columns = format_columns(list(df.columns))
 
-    table_name = filename + time_string
+    table_name = format_table_name(filename + time_string)
 
     cursor.execute(Queries.create_table.format(
         table_name=table_name))

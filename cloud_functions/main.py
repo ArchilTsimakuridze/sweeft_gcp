@@ -13,7 +13,7 @@ def trigger_dag_gcf(data, context=None):
       context: The context object for the event."""
 
     web_server_url = (
-        "https://f4eb1d8fd596406b9619cbe9f8c65907-dot-europe-central2.composer.googleusercontent.com"
+        "https://76bea50fd4c4446196d50907a008fbf5-dot-europe-west3.composer.googleusercontent.com"
     )
     # Replace with the ID of the DAG that you want to run.
     dag_id = 'bucket_listener'
