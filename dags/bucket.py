@@ -9,13 +9,20 @@ YESTERDAY = datetime.datetime.now() - datetime.timedelta(days=1)
 
 
 def check_if_updated(ds, **kwargs):
+    """
+    Receives a filename from cloud function and compares its hash value with
+    its previous version hash value and if they match, return task it for
+    python branch operator to trigger the next task
+    :param ds: str
+    :param kwargs: dict
+    :return: str
+    """
     blob = kwargs['dag_run'].conf['name']
 
     client = storage.Client()
     bucket = client.get_bucket('maridashvili-bucket')
 
     blobs = bucket.list_blobs(prefix=blob, versions=True)
-
     version_hash_list = []
 
     for blob in blobs:
@@ -28,12 +35,11 @@ def check_if_updated(ds, **kwargs):
 
 
 default_args = {
-    'owner': 'Composer Example',
+    'owner': 'GCP Airflow',
     'depends_on_past': False,
     'email': [''],
     'email_on_failure': False,
     'email_on_retry': False,
-    'retries': False,
     'start_date': YESTERDAY,
 }
 
@@ -44,7 +50,7 @@ with models.DAG(
         schedule_interval=datetime.timedelta(days=1)) as dag:
 
     hello_python = BranchPythonOperator(
-        task_id='hello',
+        task_id='check_if_updated',
         python_callable=check_if_updated)
 
     t2 = BashOperator(
