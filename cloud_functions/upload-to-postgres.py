@@ -4,7 +4,7 @@ from io import StringIO
 from datetime import datetime
 
 now = datetime.now()
-time_string = now.strftime("%d/%m/%Y_%H:%M:%S")
+time_string = now.strftime("_%d_%m_%Y_%H%M")
 
 
 class Queries:
@@ -62,7 +62,7 @@ def upload_to_postgres(event, context):
 
     columns = format_columns(list(df.columns))
 
-    table_name = format_table_name(filename + time_string)
+    table_name = format_table_name(filename) + time_string
 
     cursor.execute(Queries.create_table.format(
         table_name=table_name))
