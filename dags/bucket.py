@@ -41,6 +41,7 @@ default_args = {
     'email': [''],
     'email_on_failure': False,
     'email_on_retry': False,
+    'retries': 0,
     'start_date': YESTERDAY,
 }
 
@@ -56,7 +57,7 @@ with models.DAG(
 
     t2 = BashOperator(
         task_id='transfer_to_bucket',
-        bash_command="gsutil mv gs://maridashvili-bucket/{{ dag_run.conf['name'] }} gs://updated-bucket",
+        bash_command="gsutil mv gs://original-bucket/{{ dag_run.conf['name'] }} gs://bucket-with-updated-files",
         dag=dag)
 
     hello_python >> t2
