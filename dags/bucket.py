@@ -20,7 +20,7 @@ def check_if_updated(ds, **kwargs):
     blob = kwargs['dag_run'].conf['name']
 
     client = storage.Client()
-    bucket = client.get_bucket('maridashvili-bucket')
+    bucket = client.get_bucket('original-bucket')
 
     blobs = bucket.list_blobs(prefix=blob, versions=True)
     version_hash_list = []
@@ -29,6 +29,7 @@ def check_if_updated(ds, **kwargs):
         version_hash_list.append(blob.md5_hash)
 
     if version_hash_list[-1] != version_hash_list[-2]:
+        print(f'Transferring {blob.name} to updated file bucket')
         return 'transfer_to_bucket'
     else:
         return None
