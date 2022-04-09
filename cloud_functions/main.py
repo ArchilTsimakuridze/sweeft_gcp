@@ -13,10 +13,10 @@ def trigger_dag_gcf(data, context=None):
       context: The context object for the event."""
 
     web_server_url = (
-        "https://76bea50fd4c4446196d50907a008fbf5-dot-europe-west3.composer.googleusercontent.com"
+        "https://e375e93fbd0a467b86b5ed0b131988d8-dot-europe-west1.composer.googleusercontent.com"
     )
     # Replace with the ID of the DAG that you want to run.
-    dag_id = 'bucket_listener'
+    dag_id = 'transfer_updated'
 
     composer2_airflow_rest_api.trigger_dag(web_server_url, dag_id, data)
 

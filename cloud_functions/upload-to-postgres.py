@@ -4,7 +4,7 @@ from io import StringIO
 from datetime import datetime
 
 now = datetime.now()
-time_string = now.strftime("_%d_%m_%Y_%H%M")
+time_string = now.strftime("_%d_%m_%Y_%H%M%S")
 
 
 class Queries:
@@ -74,6 +74,8 @@ def upload_to_postgres(event, context):
     buffer = StringIO()
     df.to_csv(buffer, index=False)
     buffer.seek(0)
+
+    print(buffer)
 
     try:
         cursor.copy_from(buffer, table_name, sep=",")
