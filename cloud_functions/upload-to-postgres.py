@@ -8,6 +8,7 @@ time_string = now.strftime("%d/%m/%Y_%H:%M:%S")
 
 
 class Queries:
+    """Queries class for different queries"""
     create_table = """ 
                    CREATE TABLE {table_name}(
                    );"""
@@ -16,14 +17,10 @@ class Queries:
                   ALTER TABLE {table_name}
                   ADD COLUMN {column} VARCHAR(100);"""
 
-    copy_from = """
-                COPY {table_name}
-                FROM {path}
-                DELIMITER ','
-                CSV HEADER;"""
-
 
 def format_columns(columns_list):
+    """Formats column names from a csv file to ALPHANUMERIC characters
+    symbols are excluded"""
     formatted_columns = []
 
     for column in columns_list:
@@ -35,15 +32,23 @@ def format_columns(columns_list):
 
 
 def format_table_name(table_name):
+    """Formats table name from a csv file to ALPHANUMERIC characters,
+    symbols are excluded from the name"""
     table_character = list([val for val in table_name if val.isalnum()])
     table_name = "".join(table_character)
     return table_name
 
 
 def upload_to_postgres(event, context):
-
+    """
+    Is triggered when an updated file is uploaded to a
+    bucket-with-updated-files. Formats filename and columns to generate
+    corresponding tablename and columns for PSQL. Creates a connection
+    though psycopg2 library and copies data as a string from dataframe
+    to database. Table names are partitioned by date.
+    """
     conn = psycopg2.connect(
-        host='/cloudsql/crud-project-345807:europe-central2:sweeft-postgres',
+        host='/cloudsql/rd-month-project:europe-central2:updated-file-storage',
         database='postgres',
         user='postgres',
         password='abcabcabc')
@@ -53,7 +58,7 @@ def upload_to_postgres(event, context):
 
     filename = event['name']
 
-    df = pd.read_csv(f'gs://updated-bucket/{filename}')
+    df = pd.read_csv(f'gs://bucket-with-updated-files/{filename}')
 
     columns = format_columns(list(df.columns))
 
