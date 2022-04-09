@@ -26,8 +26,6 @@ class BlobManager:
                                   credentials_json=self.credentials)
         self.bucket = self.object.bucket
         self.blob = self.object.get_blob
-        self.blobs = self.bucket.list_blobs(prefix=self.blob_path,
-                                            versions=True)
 
     def upload(self, file_path):
         self.blob.upload_from_filename(absolute_path(file_path))
@@ -46,21 +44,9 @@ class BlobManager:
     def get_string(self):
         return self.blob.download_as_string()
 
-    def update(self, file_path):
-        self.delete()
-        self.upload(file_path)
-        return f'Updated {self.blob_name}'
-
-    def some_func(self):
-        hash_list = []
-        for blob in self.blobs:
-            hash_list.append(blob.md5_hash)
-
 
 b = BlobManager(credentials_path=CREDENTIALS_JSON, blob_path=BLOB_PATH,
                 blob_name=BLOB_NAME, bucket_name=BUCKET_NAME,
                 project_name=PROJECT_NAME)
 
 b.upload('temporary_data/archil.csv')
-
-b.some_func()
