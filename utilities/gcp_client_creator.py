@@ -22,8 +22,11 @@ class CredentialManager:
     @property
     def get_credentials(self):
         """Returns credentials from a credentials dict"""
-        return ServiceAccountCredentials.from_json_keyfile_dict(
-            keyfile_dict=self.credentials_dict)
+        try:
+            return ServiceAccountCredentials.from_json_keyfile_dict(
+                keyfile_dict=self.credentials_dict)
+        except ValueError as ve:
+            print('Invalid credentials, please enter correct credentials')
 
     @property
     def get_client(self):
