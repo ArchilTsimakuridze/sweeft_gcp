@@ -3,7 +3,7 @@ from helpers.path_formatter import absolute_path
 
 # Blob manager class parameters
 BUCKET_NAME = 'original-bucket'
-BLOB_NAME = 'regionaldata.csv'
+BLOB_NAME = 'nika.csv'
 BLOB_PATH = ''
 PROJECT_NAME = '3rd-month-project'
 CREDENTIALS_JSON = absolute_path('temporary_config/credentials.json')
@@ -17,7 +17,7 @@ CREDENTIALS_JSON = absolute_path('temporary_config/credentials.json')
 
 
 def main():
-    # blob_object.upload('data/regionaldata.csv')
+    # blob_object.upload('data/nika.csv')
     return True
 
 
