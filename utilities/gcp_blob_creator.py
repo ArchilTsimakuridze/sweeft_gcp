@@ -6,7 +6,7 @@ from utilities.gcp_client_creator import CredentialManager
 
 @dataclass
 class BlobCreator:
-    """Returns a bucket and a blob for a given GCP client"""
+    """Creates a bucket and a blob for a given GCP client"""
 
     credentials_json: str
     project_name: str
@@ -16,7 +16,7 @@ class BlobCreator:
 
     @property
     def bucket(self):
-        """Returns a bucket from a gcp client"""
+        """Returns a bucket from a GCP client"""
         try:
             client = CredentialManager(self.credentials_json,
                                        self.project_name).get_client

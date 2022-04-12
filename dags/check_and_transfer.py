@@ -10,9 +10,12 @@ YESTERDAY = datetime.datetime.now() - datetime.timedelta(days=1)
 
 def check_if_updated(ds, **kwargs):
     """
-    Receives a filename from cloud function and compares its hash value with
-    its previous version hash value and if they match, return task it for
-    python branch operator to trigger the next task
+    Receives a filename from the cloud function which triggers
+    'transfer_updated' DAG. Compares hash value of the received filename with
+    the hash value of given filenames pervious version. If hash values DO
+    NOT match, hence there has been a change in the file, PythonBranchOperator
+    returns task id 'transfer_to_bucket' and updated file is transfered to
+    'bucket-with-updated-files'.
     :param ds: str
     :param kwargs: dict
     :return: str

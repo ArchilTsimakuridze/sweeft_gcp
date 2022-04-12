@@ -9,13 +9,14 @@ AUTH_SCOPE = "https://www.googleapis.com/auth/cloud-platform"
 CREDENTIALS, _ = google.auth.default(scopes=[AUTH_SCOPE])
 
 
-def make_composer2_web_server_request(url: str, method: str = "GET", **kwargs: Any) -> google.auth.transport.Response:
+def make_composer2_web_server_request(url: str, method: str = "GET",
+                                      **kwargs: Any) -> google.auth.transport.Response:
     """
     Make a request to Cloud Composer 2 environment's web server.
     Args:
       url: The URL to fetch.
-      method: The request method to use ('GET', 'OPTIONS', 'HEAD', 'POST', 'PUT',
-        'PATCH', 'DELETE')
+      method: The request method to use ('GET', 'OPTIONS', 'HEAD', 'POST',
+      'PUT', 'PATCH', 'DELETE')
       **kwargs: Any of the parameters defined for the request function:
                   If no timeout is provided, it is set to 90 by default.
     """

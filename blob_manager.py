@@ -4,7 +4,7 @@ from helpers.path_formatter import absolute_path
 
 class BlobManager:
     """Creates a blob object from BlobCreator class and applies CRUD
-    functionality to it
+    functionality to it.
     Args:
     credentials_path: Path to service account credentials file: Str
     project_name: Str
@@ -12,8 +12,8 @@ class BlobManager:
     blob_path: Str
     bucket_name: Str
 
-    Class methods upload/update, delete and download a given blob
-    or a file
+    Methods upload/update, delete and download a given blob
+    or a file.
     """
     def __init__(self, credentials_path, project_name, bucket_name,
                  blob_name, blob_path):

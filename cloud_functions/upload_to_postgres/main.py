@@ -19,7 +19,7 @@ class Queries:
 
 
 def format_columns(columns_list):
-    """Formats column names from a csv file to ALPHANUMERIC characters
+    """Formats column names from a csv file to ALPHANUMERIC characters,
     symbols are excluded"""
     formatted_columns = []
 
@@ -46,6 +46,11 @@ def upload_to_postgres(event, context):
     corresponding tablename and columns for PSQL. Creates a connection
     though psycopg2 library and copies data as a string from dataframe
     to database. Table names are partitioned by date.
+
+    Args:
+      event: A dictionary containing the data for the event. Its format depends
+      on the event. In this case data contains metadata of an uploaded file
+      context: The context object for the event.
     """
     conn = psycopg2.connect(
         host='/cloudsql/rd-month-project:europe-central2:updated-file-storage',
@@ -56,6 +61,7 @@ def upload_to_postgres(event, context):
     conn.autocommit = True
     cursor = conn.cursor()
 
+    # Getting the filename of an uploaded file from the event dictionary.
     filename = event['name']
 
     df = pd.read_csv(f'gs://bucket-with-updated-files/{filename}')

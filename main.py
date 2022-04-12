@@ -6,9 +6,9 @@ BUCKET_NAME = 'original-bucket'
 BLOB_NAME = 'nika.csv'
 BLOB_PATH = ''
 PROJECT_NAME = '3rd-month-project'
-CREDENTIALS_JSON = absolute_path('temporary_config/credentials.json')
+CREDENTIALS_JSON = absolute_path('config/credentials.json')
 
-# Class template, uncomment for use
+# Object template, uncomment for use
 # blob_object = BlobManager(credentials_path=CREDENTIALS_JSON,
 #                           blob_path=BLOB_PATH,
 #                           blob_name=BLOB_NAME,
