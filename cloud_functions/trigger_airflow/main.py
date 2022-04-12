@@ -1,6 +1,4 @@
-from typing import Any
-
-import composer2_airflow_rest_api
+from cloud_functions.trigger_airflow import composer2_airflow_rest_api
 
 
 def trigger_dag_gcf(data, context=None):
