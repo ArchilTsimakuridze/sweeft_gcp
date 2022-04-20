@@ -1,0 +1,21 @@
+Code State (working/Not Working/Partially )     ===> max 10 points = ACHI: 7    GUJA: X
+Code readability                                ===> max 20 points = ACHI: 20   GUJA: X
+Code structure                                  ===> max 20 points = ACHI: 2    GUJA: X
+Code Idea                                       ===> max 20 points = ACHI: 17   GUJA: X
+Code Readme + Doc_string                        ===> max 20 points = ACHI: 20   GUJA: X
+Repo State                                      ===> max 10 points = ACHI: 5    GUJA: X
+Total:                                                               ACHI: 71   GUJA: X
+
+# =============================================================================
+REMARKS from Archil:
+
+# when using branchPythonOperator you need actual branching in your dags. if true or false.
+# you should move all your hardcoded access/password/urls to variables. in CF-s
+# connections objects should have another function/class to get the connection.
+# table can be created with columns.
+# naming of folders in repo is confusing.
+# you can use bashOperator but you don't need it. (lazy)
+# composer dags shouldn't fail when there is no new data.
+# json_formater, path_formater should be in same package of helpers.
+# you should've used CRUD for your blob transfer not just upload from local.
+# Repo State is bad, you should have at least two branches, one for development one for production/for me. and you should upload every code change to REPO. after some of the code is working you should merge it to master.
