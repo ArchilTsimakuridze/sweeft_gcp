@@ -1,10 +1,10 @@
-Code State (working/Not Working/Partially )     ===> max 10 points = ACHI: 7    GUJA: X
-Code readability                                ===> max 20 points = ACHI: 20   GUJA: X
-Code structure                                  ===> max 20 points = ACHI: 2    GUJA: X
-Code Idea                                       ===> max 20 points = ACHI: 17   GUJA: X
-Code Readme + Doc_string                        ===> max 20 points = ACHI: 20   GUJA: X
-Repo State                                      ===> max 10 points = ACHI: 5    GUJA: X
-Total:                                                               ACHI: 71   GUJA: X
+Code State (working/Not Working/Partially )     ===> max 10 points = ACHI: 7    GUJA: X     Alex: 7 
+Code readability                                ===> max 20 points = ACHI: 20   GUJA: X     Alex: 20
+Code structure                                  ===> max 20 points = ACHI: 2    GUJA: X     Alex: 10
+Code Idea                                       ===> max 20 points = ACHI: 17   GUJA: X     Alex: 15
+Code Readme + Doc_string                        ===> max 20 points = ACHI: 20   GUJA: X     Alex: 20
+Repo State                                      ===> max 10 points = ACHI: 5    GUJA: X     Alex: 1
+Total:                                                               ACHI: 71   GUJA: X     Alex: 72
 
 # =============================================================================
 REMARKS from Archil:
@@ -19,3 +19,9 @@ REMARKS from Archil:
 # json_formater, path_formater should be in same package of helpers.
 # you should've used CRUD for your blob transfer not just upload from local.
 # Repo State is bad, you should have at least two branches, one for development one for production/for me. and you should upload every code change to REPO. after some of the code is working you should merge it to master.
+
+Comments from Alex:
+Overall nice job. I do not like the idea of having multiple requirements.txt files. 
+I would also encourage to use more classes rather than functions directly.
+Do not put credentials in the repo (even though it is empty). Also, do not put
+different data file sin the repo, this is for code only.
